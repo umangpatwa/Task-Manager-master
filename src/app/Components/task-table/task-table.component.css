@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+mat-card {
+  width: 90%;
+}
+.task-container {
+  overflow-x: auto;
+}
+.is-completed-icon {
+  color: limegreen;
+}
+td {
+  max-width: 525px;
+}

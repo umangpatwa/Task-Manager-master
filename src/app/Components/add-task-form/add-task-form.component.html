@@ -1,0 +1,46 @@
+<h1  mat-dialog-title>{{editing !== true?'Create Task':'Update Task'}}</h1>
+
+<div mat-dialog-content class="dialog__content">
+  <div [formGroup]="form" class="container">
+    <mat-form-field>
+      <input matInput required placeholder="Task Title" formControlName="taskTitle">
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        required
+        placeholder="Task Description"
+        formControlName="taskDescription">
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-select placeholder="Assigned To" formControlName="assignedTo">
+        <mat-option *ngFor="let user of userList" [value]="user.name">
+          {{user.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        required
+        [min]="todayDate"
+        [matDatepicker]="picker"
+        placeholder="Committed On"
+        formControlName="committedOn"
+        (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button color="primary" (click)="handleCancel()">Cancel</button>
+  <button
+    mat-button
+    color="primary"
+    (click)="handleSubmit()"
+    [disabled]="form.invalid">
+    {{editing !== true?'Create':'Update'}}
+  </button>
+</div>

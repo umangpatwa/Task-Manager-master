@@ -1,0 +1,14 @@
+.task-detail {
+  line-height: 25px;
+}
+label {
+  font-weight: bold;
+  width: 20%;
+}
+.comment-time {
+  color: grey;
+  font-size: 14px;
+}
+.comment-by {
+  color: cornflowerblue;
+}

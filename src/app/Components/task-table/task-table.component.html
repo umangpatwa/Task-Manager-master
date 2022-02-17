@@ -1,0 +1,41 @@
+<mat-card class="container">
+  <h1>Tasks List</h1>
+  <div class="table">
+    <div class="task-container">
+      <table mat-table [dataSource]="tasksList">
+
+        <ng-container matColumnDef="taskTitle">
+          <th mat-header-cell *matHeaderCellDef>Task Title</th>
+          <td mat-cell *matCellDef="let element">{{element.taskTitle}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="taskDescription">
+          <th mat-header-cell *matHeaderCellDef>Task Description</th>
+          <td mat-cell *matCellDef="let element">{{element.taskDescription}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="assignedTo">
+          <th mat-header-cell *matHeaderCellDef>Assigned To</th>
+          <td mat-cell *matCellDef="let element">{{element.assignedTo}}</td>
+        </ng-container>
+        <ng-container matColumnDef="committedOn">
+          <th mat-header-cell *matHeaderCellDef>Committed On</th>
+          <td mat-cell *matCellDef="let element">{{element.committedOn | date: 'mediumDate'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td  mat-cell *matCellDef="let element">
+            <button mat-button (click)="view.emit(element)"><mat-icon matTooltip="View task">remove_red_eye</mat-icon></button>
+            <button mat-button *ngIf="!element.completedOn" (click)="edit.emit(element)"><mat-icon matTooltip="Edit task">edit</mat-icon></button>
+            <button mat-button *ngIf="!element.completedOn" (click)="delete.emit(element)"><mat-icon matTooltip="Delete task">delete</mat-icon></button>
+            <button mat-button (click)="addComments.emit(element)"><mat-icon matTooltip="Add comment">comment</mat-icon></button>
+            <button mat-raised-button color="primary" *ngIf="!element.completedOn" (click)="markAsDone.emit(element)">Mark As Done</button>
+            <mat-icon class="is-completed-icon" *ngIf="element.completedOn">done</mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+    </div>
+  </div>
+</mat-card>

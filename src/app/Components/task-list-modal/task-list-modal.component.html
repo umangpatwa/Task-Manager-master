@@ -1,0 +1,54 @@
+<mat-toolbar>
+  <div class="button">
+    <button mat-raised-button color="primary"
+            (click)="addTask(null)">
+      Add Task
+    </button>
+    <button mat-raised-button class="sign-out"
+            (click)="signOut()">
+      Sign Out
+    </button>
+  </div>
+</mat-toolbar>
+<div class="filter" *ngIf="taskList.length > 0">
+  <mat-form-field class="filter-fields">
+    <input
+      matInput
+      [min]="minFilterFromStartDate"
+      [max]="maxFilterFromStartDate"
+      [matDatepicker]="pickerFromDate"
+      placeholder="Start Date"
+      (dateChange)="eventFromFilter($event)"
+      (click)="pickerFromDate.open()" #filterFromDate>
+    <mat-datepicker-toggle matSuffix [for]="pickerFromDate"></mat-datepicker-toggle>
+    <mat-datepicker #pickerFromDate></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="filter-fields">
+    <input
+      matInput
+      [min]="minFilterToStartDate"
+      [matDatepicker]="pickerToDate"
+      placeholder="End Date"
+      (dateChange)="eventToFilter($event)"
+      (click)="pickerToDate.open()" #filterToDate>
+    <mat-datepicker-toggle matSuffix [for]="pickerToDate"></mat-datepicker-toggle>
+    <mat-datepicker #pickerToDate></mat-datepicker>
+  </mat-form-field>
+  <button mat-raised-button  color="primary" (click)="displayFilterData()"><mat-icon>find_in_page</mat-icon>Apply</button>
+  <button mat-raised-button  (click)="resetFilters()"><mat-icon>restore</mat-icon>Reset</button>
+
+</div>
+<div class="container">
+  <div class="table">
+    <br>
+    <app-task-table
+      *ngIf="taskList.length > 0"
+      [tasksList]="taskList"
+      (view)="viewTask($event)"
+      (edit)="addTask($event)"
+      (delete) = "deleteTask($event)"
+      (addComments)="addComments($event)"
+      (markAsDone) = "markAsDoneTask($event)"
+    ></app-task-table>
+  </div>
+</div>
