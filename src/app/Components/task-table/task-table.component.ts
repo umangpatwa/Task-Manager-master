@@ -7,19 +7,15 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class TaskTableComponent implements OnInit {
   @Input() tasksList = [];
+  @Input('isView') isView: boolean = true;
   @Output() view: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() delete: EventEmitter<any> = new EventEmitter();
-  @Output() addComments: EventEmitter<any> = new EventEmitter();
   @Output() markAsDone: EventEmitter<any> = new EventEmitter();
-  columns: string[] = ['taskTitle', 'taskDescription', 'assignedTo', 'committedOn', 'actions'];
+  columns: string[] = ['taskTitle', 'taskDescription', 'actions'];
   constructor() { }
 
   ngOnInit() {
-    this.tasksList.sort((a, b) => {
-      if (a.committedOn > b.committedOn) { return -1; }
-      if (a.committedOn < b.committedOn) { return 1; }
-      return 0;
-    });
+    
   }
 }

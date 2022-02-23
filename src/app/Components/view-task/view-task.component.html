@@ -3,19 +3,9 @@
     <mat-card-title><h3>Task Details</h3></mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div class="task-detail"><label>Task Title: </label>{{task.taskTitle | titlecase}}</div>
-    <div class="task-detail"><label>Task Description: </label>{{task.taskDescription | titlecase}}</div>
-    <div class="task-detail"><label>Task Created By: </label>{{task.createdBy}}</div>
-    <div class="task-detail"><label>Task Created On: </label>{{task.createdOn | date:'mediumDate'}}</div>
-    <div class="task-detail"><label>Task Committed On: </label>{{task.committedOn |date: 'mediumDate'}}</div>
-    <div class="task-detail"><label>Task Assigned To: </label>{{task.assignedTo | titlecase}}</div>
-    <div class="task-detail"><label>Task Completed On: </label>{{task.completedOn? (task.completedOn | date:'mediumDate'): 'Not completed'}}</div>
-    <div class="task-detail" *ngIf="task.comments.length > 0">
-      <h4>Task Comments:</h4>
-    <div *ngFor="let comment of task.comments; let i = index">
-     {{i+1 + '.' }} {{comment.description | titlecase}} {{'- By '}} <span class="comment-by">{{(comment.updatedBy ? (comment.updatedBy | titlecase): (comment.createdBy | titlecase) )}}</span>
-      <span class="comment-time"> at {{comment.createdOn | date:'medium'}}</span>
-    </div>
-    </div>
+    <div class="task-detail"><label>Task Title: </label>{{taskObj.taskTitle | titlecase}}</div>
+    <div class="task-detail"><label>Task Description: </label>{{taskObj.taskDescription | titlecase}}</div>
+    <div class="task-detail"><label>Task Created On: </label>{{taskObj.createdOn | date:'mediumDate'}}</div>
+    <div class="task-detail"><label>Task Committed On: </label>{{taskObj.updatedOn |date: 'mediumDate'}}</div>
   </mat-card-content>
 </mat-card>

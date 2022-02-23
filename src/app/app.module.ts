@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -11,8 +11,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatDialogModule} from '@angular/material';
 import {AddTaskFormComponent} from './Components/add-task-form/add-task-form.component';
 import {TaskTableComponent} from './Components/task-table/task-table.component';
-import {AddCommentModalComponent} from './Components/add-comment-modal/add-comment-modal.component';
 import { ViewTaskComponent } from './Components/view-task/view-task.component';
+import { SubTaskComponent } from './Components/sub-task/sub-task.component';
+import { SubTaskFormComponent } from './Components/sub-task-form/sub-task-form.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { ViewTaskComponent } from './Components/view-task/view-task.component';
     TaskListModalComponent,
     AddTaskFormComponent,
     TaskTableComponent,
-    AddCommentModalComponent,
-    ViewTaskComponent
+    ViewTaskComponent,
+    SubTaskComponent,
+    SubTaskFormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,10 +33,11 @@ import { ViewTaskComponent } from './Components/view-task/view-task.component';
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   exports: [MaterialModule, ReactiveFormsModule, FormsModule],
-  entryComponents: [AddTaskFormComponent, AddCommentModalComponent, ViewTaskComponent],
+  entryComponents: [AddTaskFormComponent,SubTaskFormComponent, ViewTaskComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
